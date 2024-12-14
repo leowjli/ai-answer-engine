@@ -1,7 +1,8 @@
 import Groq from "groq-sdk";
 import * as cheerio from 'cheerio';
-import puppeteer from "puppeteer";
+// import puppeteer from "puppeteer";
 import dotenv from 'dotenv';
+import chromium from 'chrome-aws-lambda';
 
 dotenv.config();
 
@@ -84,7 +85,11 @@ async function ScrapeWeb(url: string): Promise<string> {
   let content = "";
   try {
     // starting webscarpping with puppeteer
-    const browser = await puppeteer.launch();
+    const browser = await chromium.puppeteer.launch({
+      args: chromium.args,
+      executablePath: await chromium.executablePath,
+      headless: true,
+    });
     const page = await browser.newPage();
     await page.goto(url, { waitUntil: 'domcontentloaded' });
 
