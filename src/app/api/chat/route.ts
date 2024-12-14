@@ -2,10 +2,9 @@ import Groq from "groq-sdk";
 import * as cheerio from 'cheerio';
 import puppeteer from "puppeteer-core";
 import dotenv from 'dotenv';
+import chromium from "chrome-aws-lambda";
 
 dotenv.config();
-const CHROMIUM_PATH = '/usr/bin/chromium'; 
-
 
 export async function POST(req: Request) {
   try {
@@ -87,9 +86,9 @@ async function ScrapeWeb(url: string): Promise<string> {
   try {
     // starting webscarpping with puppeteer
     const browser = await puppeteer.launch({
-      executablePath: CHROMIUM_PATH,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      headless: true,
+      executablePath: await chromium.executablePath,
+      args: chromium.args,
+      headless: chromium.headless,
     });
     const page = await browser.newPage();
     await page.goto(url, { waitUntil: 'domcontentloaded' });
