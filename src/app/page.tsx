@@ -64,7 +64,9 @@ export default function Home() {
           <button onClick={handleToggle} className="text-white p-4 text-2xl font-bold lg:hidden">
             Close Menu
           </button>
-          <div className="space-y-3 flex-1"></div>
+          <div className="space-y-3 flex-1">
+            <h2 className="text-center font-semibold text-xl pt-4">Chat History</h2>
+          </div>
         </div>
       </div>
       {openMenu && (
@@ -75,16 +77,34 @@ export default function Home() {
         {/* Header */}
         <div className="w-full sticky top-0 bg-gray-800 border-b border-gray-700 p-4 z-50">
           <div className="max-w-4xl mx-auto">
-            <div className="flex items-center space-x-2 sm:space-x-5">
-              <button onClick={handleToggle} className="mr-1 p-2 rounded lg:hidden">
-                <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fillRule="evenodd" clipRule="evenodd" d="M3.46447 20.5355C4.92893 22 7.28595 22 12 22C16.714 22 19.0711 22 20.5355 20.5355C22 19.0711 22 16.714 22 12C22 7.28595 22 4.92893 20.5355 3.46447C19.0711 2 16.714 2 12 2C7.28595 2 4.92893 2 3.46447 3.46447C2 4.92893 2 7.28595 2 12C2 16.714 2 19.0711 3.46447 20.5355ZM18.75 16C18.75 16.4142 18.4142 16.75 18 16.75H6C5.58579 16.75 5.25 16.4142 5.25 16C5.25 15.5858 5.58579 15.25 6 15.25H18C18.4142 15.25 18.75 15.5858 18.75 16ZM18 12.75C18.4142 12.75 18.75 12.4142 18.75 12C18.75 11.5858 18.4142 11.25 18 11.25H6C5.58579 11.25 5.25 11.5858 5.25 12C5.25 12.4142 5.58579 12.75 6 12.75H18ZM18.75 8C18.75 8.41421 18.4142 8.75 18 8.75H6C5.58579 8.75 5.25 8.41421 5.25 8C5.25 7.58579 5.58579 7.25 6 7.25H18C18.4142 7.25 18.75 7.58579 18.75 8Z" fill="#fff"/>
-                </svg>
-              </button>
-              <div className="flex items-center justify-center w-8 h-8 sm:w-12 sm:h-12 rounded-xl">
-                <Image src="/byte-bunny-logo.png" alt="Byte Bunny Logo" width={45} height={45} />
+            <div className="flex items-center justify-between">
+              <div className="flex items-center spac-x-2 sm:space-x-5">
+                <button onClick={handleToggle} className="mr-1 p-2 rounded lg:hidden">
+                  <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M3.46447 20.5355C4.92893 22 7.28595 22 12 22C16.714 22 19.0711 22 20.5355 20.5355C22 19.0711 22 16.714 22 12C22 7.28595 22 4.92893 20.5355 3.46447C19.0711 2 16.714 2 12 2C7.28595 2 4.92893 2 3.46447 3.46447C2 4.92893 2 7.28595 2 12C2 16.714 2 19.0711 3.46447 20.5355ZM18.75 16C18.75 16.4142 18.4142 16.75 18 16.75H6C5.58579 16.75 5.25 16.4142 5.25 16C5.25 15.5858 5.58579 15.25 6 15.25H18C18.4142 15.25 18.75 15.5858 18.75 16ZM18 12.75C18.4142 12.75 18.75 12.4142 18.75 12C18.75 11.5858 18.4142 11.25 18 11.25H6C5.58579 11.25 5.25 11.5858 5.25 12C5.25 12.4142 5.58579 12.75 6 12.75H18ZM18.75 8C18.75 8.41421 18.4142 8.75 18 8.75H6C5.58579 8.75 5.25 8.41421 5.25 8C5.25 7.58579 5.58579 7.25 6 7.25H18C18.4142 7.25 18.75 7.58579 18.75 8Z" fill="#fff" />
+                  </svg>
+                </button>
+                <div className="flex items-center justify-center w-8 h-8 sm:w-12 sm:h-12 rounded-xl">
+                  <Image src="/byte-bunny-logo.png" alt="Byte Bunny Logo" width={45} height={45} />
+                </div>
+                <h1 className="text-xl font-semibold text-white">ByteBunny</h1>
               </div>
-              <h1 className="text-xl font-semibold text-white">ByteBunny</h1>
+
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <button className="flex items-center space-x-1 sm:space-x-2 backdrop-blur-sm bg-white/10 hover:bg-white/20 text-white px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-sm border border-white/10">
+                  <svg width="16px" height="16px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <g id="Layer_2" data-name="Layer 2">
+                      <g id="invisible_box" data-name="invisible box">
+                        <rect width="48" height="48" fill="none" />
+                      </g>
+                      <g id="icons_Q2" data-name="icons Q2">
+                        <path d="M39,22H26V9a2,2,0,0,0-4,0V22H9a2,2,0,0,0,0,4H22V39a2,2,0,0,0,4,0V26H39a2,2,0,0,0,0-4Z" fill="#fff" />
+                      </g>
+                    </g>
+                  </svg>
+                  <span className="hidden sm:inline font-medium">New Chat</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -102,10 +122,10 @@ export default function Home() {
               >
                 <Image className="w-[38px] h-[38px]"
                   src={msg.role === "ai"
-                    ? "/byte-bunny-logo.png" : "/user.png"} 
+                    ? "/byte-bunny-logo.png" : "/user.png"}
                   alt={msg.role === "ai"
                     ? "Byte Bunny Logo" : "Default User logo"}
-                  width={38} 
+                  width={38}
                   height={38} />
                 <div
                   className={`px-4 py-2 rounded-2xl max-w-[80%] ${msg.role === "ai"
@@ -157,18 +177,18 @@ export default function Home() {
                 disabled={isLoading}
                 className="bg-cyan-600 text-white px-5 py-3 rounded-xl hover:bg-cyan-700 transition-all disabled:bg-cyan-800 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isLoading ? "Sending..." : 
+                {isLoading ? "Sending..." :
                   <svg width="20px" height="20px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                  <title>send-solid</title>
-                  <g id="Layer_2" data-name="Layer 2">
-                    <g id="invisible_box" data-name="invisible box">
-                      <rect width="48" height="48" fill="none"/>
+                    <title>send-solid</title>
+                    <g id="Layer_2" data-name="Layer 2">
+                      <g id="invisible_box" data-name="invisible box">
+                        <rect width="48" height="48" fill="none" />
+                      </g>
+                      <g id="icons_Q2" data-name="icons Q2">
+                        <path d="M44.9,23.2l-38-18L6,5A2,2,0,0,0,4,7L9.3,23H24a2.1,2.1,0,0,1,2,2,2,2,0,0,1-2,2H9.3L4,43a2,2,0,0,0,2,2l.9-.2,38-18A2,2,0,0,0,44.9,23.2Z" fill="#fff" />
+                      </g>
                     </g>
-                    <g id="icons_Q2" data-name="icons Q2">
-                      <path d="M44.9,23.2l-38-18L6,5A2,2,0,0,0,4,7L9.3,23H24a2.1,2.1,0,0,1,2,2,2,2,0,0,1-2,2H9.3L4,43a2,2,0,0,0,2,2l.9-.2,38-18A2,2,0,0,0,44.9,23.2Z" fill="#fff"/>
-                    </g>
-                  </g>
-                </svg>}
+                  </svg>}
               </button>
             </div>
           </div>

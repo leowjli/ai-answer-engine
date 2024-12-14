@@ -27,7 +27,7 @@ export async function POST(req: Request) {
 
     if (message.toLowerCase().includes("https") || message.toLowerCase().includes("scrape")) {
       // get the url link
-      const urls = message.match(/https?:\/\/[^\s]+/);
+      const urls = message.match(/https?:\/\/[^\s]+/g);
 
       // if url exists, use scrapping
       if (urls && urls.length > 0) {
@@ -45,10 +45,10 @@ export async function POST(req: Request) {
           citations.push(url);
 
           return summary.choices[0].message.content ?? "I could not summarize this website.";
-        })
+        });
         
         const allSummaries = await Promise.all(allContent);
-        aiRes = allSummaries.join("\n\n");
+        aiRes = allSummaries.join("\n\n\n");
         console.log(aiRes);
       } else {
         aiRes = "Could you provide the link the website you want more information for?";
@@ -113,5 +113,5 @@ async function ScrapeWeb(url: string): Promise<string> {
       content = "There was an error when web scraping. The page might not be accessible or the server might be down.";
     }
   }
-  return content;
+  return content + "\n\n";
 }
