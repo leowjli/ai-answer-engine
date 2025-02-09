@@ -2,7 +2,6 @@ import Groq from "groq-sdk";
 import * as cheerio from 'cheerio';
 import puppeteer from "puppeteer-core";
 import dotenv from 'dotenv';
-import chromium from "chrome-aws-lambda";
 
 dotenv.config();
 
@@ -84,18 +83,18 @@ export async function POST(req: Request) {
 async function ScrapeWeb(url: string): Promise<string> {
   let content = "";
   try {
+    // Use a local Chrome or Chromium executable
     // starting webscarpping with puppeteer
     const browser = await puppeteer.launch({
-      executablePath: await chromium.executablePath,
-      args: chromium.args,
-      headless: chromium.headless,
+      executablePath: process.env.CHROME_PATH, // Path to Chrome executable
+      headless: true,
     });
     const page = await browser.newPage();
     await page.goto(url, { waitUntil: 'domcontentloaded' });
 
     const pageHTML = await page.content();
 
-    // use cheerio
+    // Use cheerio to parse the HTML
     const $ = cheerio.load(pageHTML);
     const title = $('title').text();
     const body = $('body').text().trim();
@@ -106,11 +105,11 @@ async function ScrapeWeb(url: string): Promise<string> {
 
     content = `
       Title: ${title}\n
-      Website Info: ${body.slice(0, 4000)}`; // limiting the body length
+      Website Info: ${body.slice(0, 4000)}`; // Limiting the body length
 
     await browser.close();
     return content;
-  } catch(error) {
+  } catch (error) {
     console.error("Error during web scraping: ", error);
     if (error === "Failed to extract meaningful content") {
       content = "The website's content could not be extracted. This may be due to restrictions or an unsupported page format.";
